@@ -1,1 +1,2 @@
-
+cd justice-mvp/data
+curl -o la_boundaries.geojson "https://services3.arcgis.com/2S90r5q5n1TvMt2U/arcgis/rest/services/LA_County_Boundaries/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=geojson"
