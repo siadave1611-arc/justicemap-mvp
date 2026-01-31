@@ -1,0 +1,78 @@
+{
+  "jurisdictions": [
+    {
+      "id": "la_city",
+      "name": "Los Angeles City",
+      "legal_regime": "JCO + RSO (pre-1978 units)",
+      "key_rights": [
+        "Just-cause eviction only",
+        "60-day owner-move notice required", 
+        "Relocation assistance $9,200+ (2026)",
+        "Right to Counsel eligible",
+        "3-day pay-or-quit OK if rent > fair market value"
+      ],
+      "resources": [
+        {"name": "LAHD Eviction Tracker", "url": "https://housing.lacity.gov/residents/renters/eviction-notices-filed"},
+        {"name": "LAFLA", "url": "https://lafla.org/"},
+        {"name": "Stay Housed LA", "url": "https://www.stayhousedla.org/"}
+      ],
+      "high_risk_zips": ["90012", "90011", "90037", "90044", "90003", "90007"],
+      "court_venue": "Stanley Mosk Courthouse"
+    },
+    {
+      "id": "la_county_unincorporated",
+      "name": "LA County Unincorporated Areas",
+      "legal_regime": "RSTPO (Rent Stabilization)",
+      "key_rights": [
+        "5% + CPI annual rent increase cap",
+        "60-day owner-move notice", 
+        "No-fault relocation assistance required",
+        "Just-cause eviction protections"
+      ],
+      "resources": [
+        {"name": "DCBA Eviction Resources", "url": "https://dcba.lacounty.gov/portfolio/eviction/"},
+        {"name": "Stay Housed LA", "url": "https://www.stayhousedla.org/"}
+      ],
+      "high_risk_zips": ["91330", "90245", "90047", "90604"],
+      "court_venue": "Norwalk Courthouse"
+    },
+    {
+      "id": "long_beach",
+      "name": "Long Beach",
+      "legal_regime": "Local Rent Control + AB1482",
+      "key_rights": [
+        "Local just-cause ordinance",
+        "45-day owner-move notice",
+        "5% + CPI rent cap on covered units"
+      ],
+      "resources": [
+        {"name": "Long Beach Rent Registry", "url": "https://www.longbeach.gov/lbds/"},
+        {"name": "LB Legal Aid", "url": "https://www.lbsa.org/"}
+      ],
+      "high_risk_zips": ["90813", "90805", "90804"],
+      "court_venue": "Long Beach Courthouse"
+    },
+    {
+      "id": "glendale",
+      "name": "Glendale",
+      "legal_regime": "AB1482 Statewide",
+      "key_rights": [
+        "Statewide tenant protections only",
+        "60/30-day notices by tenancy length",
+        "No local just-cause requirements"
+      ],
+      "resources": [
+        {"name": "Glendale Rent Program", "url": "https://www.glendaleca.gov/government/departments/hcd/rent-program"},
+        {"name": "LAFLA Glendale Office", "url": "https://lafla.org/"}
+      ],
+      "high_risk_zips": ["91204", "91205"],
+      "court_venue": "Glendale Courthouse"
+    }
+  ],
+  "metadata": {
+    "last_updated": "2026-02-01",
+    "coverage": "80% LA County population",
+    "disclaimer": "Not legal advice. Consult attorney for case-specific guidance.",
+    "sources": ["LAHD", "DCBA", "StayHousedLA", "LACourt.org"]
+  }
+}
