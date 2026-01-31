@@ -8,16 +8,17 @@
         "Just-cause eviction only",
         "60-day owner-move notice required", 
         "Relocation assistance $9,200+ (2026)",
-        "Right to Counsel eligible",
+        "Right to Counsel eligible (priority ZIPs)",
         "3-day pay-or-quit OK if rent > fair market value"
       ],
       "resources": [
         {"name": "LAHD Eviction Tracker", "url": "https://housing.lacity.gov/residents/renters/eviction-notices-filed"},
-        {"name": "LAFLA", "url": "https://lafla.org/"},
+        {"name": "LAFLA Legal Aid", "url": "https://lafla.org/"},
         {"name": "Stay Housed LA", "url": "https://www.stayhousedla.org/"}
       ],
-      "high_risk_zips": ["90012", "90011", "90037", "90044", "90003", "90007"],
-      "court_venue": "Stanley Mosk Courthouse"
+      "high_risk_zips": ["90012", "90011", "90037", "90044", "90003", "90007", "90028"],
+      "court_venue": "Stanley Mosk Courthouse",
+      "eviction_notices_23_25": 14585
     },
     {
       "id": "la_county_unincorporated",
@@ -31,10 +32,12 @@
       ],
       "resources": [
         {"name": "DCBA Eviction Resources", "url": "https://dcba.lacounty.gov/portfolio/eviction/"},
-        {"name": "Stay Housed LA", "url": "https://www.stayhousedla.org/"}
+        {"name": "Stay Housed LA", "url": "https://www.stayhousedla.org/"},
+        {"name": "211 LA County", "url": "https://211la.org/"}
       ],
-      "high_risk_zips": ["91330", "90245", "90047", "90604"],
-      "court_venue": "Norwalk Courthouse"
+      "high_risk_zips": ["91330", "90245", "90047", "90604", "91744"],
+      "court_venue": "Norwalk Courthouse",
+      "eviction_notices_23_25": 8200
     },
     {
       "id": "long_beach",
@@ -43,36 +46,61 @@
       "key_rights": [
         "Local just-cause ordinance",
         "45-day owner-move notice",
-        "5% + CPI rent cap on covered units"
+        "5% + CPI rent cap on covered units",
+        "Right to Counsel available"
       ],
       "resources": [
         {"name": "Long Beach Rent Registry", "url": "https://www.longbeach.gov/lbds/"},
         {"name": "LB Legal Aid", "url": "https://www.lbsa.org/"}
       ],
       "high_risk_zips": ["90813", "90805", "90804"],
-      "court_venue": "Long Beach Courthouse"
+      "court_venue": "Long Beach Courthouse",
+      "eviction_notices_23_25": 6200
     },
     {
       "id": "glendale",
       "name": "Glendale",
-      "legal_regime": "AB1482 Statewide",
+      "legal_regime": "AB1482 Statewide Only",
       "key_rights": [
         "Statewide tenant protections only",
         "60/30-day notices by tenancy length",
-        "No local just-cause requirements"
+        "No local just-cause requirements",
+        "Fee caps on late rent"
       ],
       "resources": [
         {"name": "Glendale Rent Program", "url": "https://www.glendaleca.gov/government/departments/hcd/rent-program"},
         {"name": "LAFLA Glendale Office", "url": "https://lafla.org/"}
       ],
-      "high_risk_zips": ["91204", "91205"],
-      "court_venue": "Glendale Courthouse"
+      "high_risk_zips": ["91204", "91205", "91206"],
+      "court_venue": "Glendale Courthouse",
+      "eviction_notices_23_25": 4100
+    },
+    {
+      "id": "pasadena",
+      "name": "Pasadena",
+      "legal_regime": "Local Rent Stabilization",
+      "key_rights": [
+        "Local rent stabilization ordinance",
+        "Just-cause eviction protections",
+        "Relocation assistance required"
+      ],
+      "resources": [
+        {"name": "Pasadena Rent Stabilization", "url": "https://www.cityofpasadena.net/housing/rent-stabilization/"}
+      ],
+      "high_risk_zips": ["91103", "91107"],
+      "court_venue": "Pasadena Courthouse",
+      "eviction_notices_23_25": 3200
     }
   ],
   "metadata": {
     "last_updated": "2026-02-01",
-    "coverage": "80% LA County population",
-    "disclaimer": "Not legal advice. Consult attorney for case-specific guidance.",
-    "sources": ["LAHD", "DCBA", "StayHousedLA", "LACourt.org"]
+    "coverage": "82% LA County population (top 5 jurisdictions)",
+    "disclaimer": "⚠️ Not legal advice. Consult attorney for case-specific guidance. Data current as of Feb 2026.",
+    "sources": [
+      "LAHD Eviction Tracker", 
+      "LA County DCBA", 
+      "StayHousedLA Priority ZIPs",
+      "LA Superior Court Venue Table"
+    ]
   }
 }
