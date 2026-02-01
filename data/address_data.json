@@ -7,33 +7,30 @@
       "rent_control": {
         "applies_to": "Multi-family buildings built on or before October 1, 1978",
         "current_cap": "3% (July 1, 2025 - June 30, 2027)",
-        "new_formula_effective": "February 2, 2026: 90% of CPI, floor 1%, ceiling 4%",
-        "utility_adder": "Eliminated effective February 2, 2026 (was +1% gas, +1% electric)",
+        "utility_adder": "Eliminated effective February 2, 2026",
+        "formula_update": "City amended formula to 90% of CPI with 1-4% range effective Feb 2, 2026; LAHD states allowable increase remains 3% for Jul 1, 2025-Jun 30, 2027 (verify annually)",
         "frequency": "Once per 12 months",
         "banking": false
       },
       "just_cause": {
-        "applies_to": "All residential units (JCO applies after 6 months or end of initial lease)",
-        "at_fault_reasons": ["Non-payment of rent", "Breach of lease", "Nuisance", "Illegal use", "Refusal to sign similar lease renewal"],
-        "no_fault_reasons": ["Owner/family move-in", "Ellis Act withdrawal", "Demolition", "Government order", "Substantial renovation"]
+        "applies_to": "All residential units via JCO (after 6 months or end of initial lease)",
+        "filing_requirement": "Eviction notices must be filed with LAHD within 3 business days of service"
       },
       "key_rights": [
-        "RSO: 3% annual rent cap through June 2027 (no utility adders after Feb 2, 2026)",
+        "RSO: 3% annual rent cap (July 2025 - June 2027)",
+        "Utility adders eliminated February 2, 2026",
         "JCO: Just-cause eviction required for ALL units after 6 months",
-        "No-fault evictions require relocation assistance ($10,650-$26,550)",
+        "No-fault evictions require relocation assistance",
         "Eviction notices must be filed with LAHD within 3 business days",
         "Right to Counsel program for eligible tenants",
-        "FMR protection: Cannot be evicted for unpaid rent below Fair Market Rent threshold",
         "Tenant Anti-Harassment Ordinance (TAHO) protections"
       ],
       "relocation_assistance": {
         "effective_period": "July 1, 2025 - June 30, 2026",
-        "eligible_tenant_under_3_years": "$10,650",
-        "eligible_tenant_3_plus_years": "$13,950",
-        "qualified_tenant_under_3_years": "$22,450",
-        "qualified_tenant_3_plus_years": "$26,550",
+        "amounts": "See LAHD Relocation Assistance Bulletin for current amounts",
         "qualified_definition": "Age 62+, disabled, or has minor children",
-        "mom_pop_reduced": "Applies to landlords with ≤4 units + 1 SFD"
+        "mom_pop_reduced": "Applies to landlords with ≤4 units + 1 SFD",
+        "payment_deadline": "Within 15 days of serving notice"
       },
       "notice_requirements": {
         "rent_increase_under_10_pct": "30 days written",
@@ -43,13 +40,18 @@
       },
       "resources": [
         {"name": "LAHD Hotline", "phone": "866-557-7368", "url": "https://housing.lacity.gov"},
-        {"name": "ZIMAS (Check RSO Status)", "url": "https://zimas.lacity.org"},
+        {"name": "ZIMAS (Check RSO/JCO Status)", "url": "https://zimas.lacity.org"},
         {"name": "Stay Housed LA", "phone": "888-694-0040", "url": "https://www.stayhousedla.org"},
-        {"name": "LAFLA Legal Aid", "url": "https://lafla.org"}
+        {"name": "Relocation Bulletin", "url": "https://housing.lacity.gov/rental-property-owners/relocation-assistance-information"}
       ],
       "high_risk_zips": ["90011", "90012", "90037", "90044", "90003", "90007", "90028"],
       "court_venue": "Stanley Mosk Courthouse",
-      "check_coverage": "Text 'RSO' to 855-880-7368 or use ZIMAS"
+      "check_coverage": "Use ZIMAS at zimas.lacity.org or call LAHD hotline",
+      "citations": {
+        "rent_cap": ["https://housing.lacity.gov/renter-protections-2"],
+        "utility_adder_change": ["https://housing.lacity.gov/rso-rent-increase-calculator"],
+        "jco_filing_requirement": ["https://housing.lacity.gov/residents/just-cause-for-eviction-ordinance-jco"]
+      }
     },
     {
       "id": "la_county_unincorporated",
@@ -57,27 +59,27 @@
       "legal_regime": "RSTPO (Rent Stabilization & Tenant Protections Ordinance)",
       "rent_control": {
         "applies_to": "Properties with 2+ units, Certificate of Occupancy on/before February 1, 1995",
-        "current_cap": "1.93% (July 1, 2025 - June 30, 2026)",
-        "small_landlord_cap": "2.93% (with self-certification)",
-        "luxury_unit_cap": "3.93%",
-        "formula": "60% of CPI, max 3%",
-        "frequency": "Once per 12 months"
+        "current_cap": "See DCBA rent increase bulletin (60% of CPI, max 3%)",
+        "small_landlord_bonus": "+1% with self-certification",
+        "luxury_unit_bonus": "+1% additional",
+        "frequency": "Once per 12 months",
+        "verify_at": "https://dcba.lacounty.gov/rentstabilizationprogram/"
       },
       "just_cause": {
         "applies_to": "All covered units",
-        "fmr_protection": "Cannot evict for unpaid rent below Fair Market Rent threshold"
+        "fmr_protection": "For nonpayment cases under RSTPO, tenancy may be terminated only when past-due rent exceeds one month of the Fair Market Rent (FMR) threshold (see DCBA)"
       },
       "key_rights": [
-        "Rent cap: 1.93% for most units (July 2025-June 2026)",
-        "Small landlords: +1% additional (2.93% total with self-certification)",
+        "Rent increases limited by RSTPO formula (60% of CPI, max 3%)",
+        "Small landlords may qualify for +1% (self-certification required)",
         "Just-cause eviction protections required",
-        "FMR protection: Cannot evict unless unpaid rent exceeds Fair Market Rent",
+        "FMR protection: Nonpayment eviction only if past-due rent exceeds 1 month FMR",
         "Relocation assistance for no-fault evictions",
         "Right to Counsel program for eligible tenants"
       ],
       "relocation_assistance": {
         "required_for": "No-fault evictions",
-        "amounts": "Based on unit size, tenancy length, and income status"
+        "amounts": "Based on unit size, tenancy length, and income - see DCBA"
       },
       "notice_requirements": {
         "rent_increase_under_10_pct": "30 days written",
@@ -87,12 +89,15 @@
       },
       "resources": [
         {"name": "DCBA Rent Stabilization", "phone": "800-593-8222", "url": "https://dcba.lacounty.gov/rentstabilizationprogram"},
-        {"name": "Stay Housed LA", "url": "https://www.stayhousedla.org/unincorporated"},
+        {"name": "Stay Housed LA (Unincorporated)", "url": "https://www.stayhousedla.org/unincorporated"},
         {"name": "211 LA County", "phone": "211", "url": "https://211la.org"},
         {"name": "Check if Unincorporated", "url": "https://lavote.gov/apps/precinctsmaps"}
       ],
       "high_risk_zips": ["91330", "90245", "90047", "90604", "91744"],
-      "court_venue": "Norwalk Courthouse"
+      "court_venue": "Norwalk Courthouse",
+      "citations": {
+        "rent_stabilization": ["https://dcba.lacounty.gov/rentstabilizationprogram/"]
+      }
     },
     {
       "id": "long_beach",
@@ -100,8 +105,7 @@
       "legal_regime": "AB 1482 (State) + Local Just Cause + Relocation Ordinance",
       "rent_control": {
         "applies_to": "AB 1482 covered units (15+ years old, not exempt SFH/condos)",
-        "current_cap": "8% (August 1, 2025 - July 31, 2026)",
-        "formula": "5% + CPI (max 10%)",
+        "current_cap": "5% + regional CPI (max 10%) - see state calculator",
         "local_cap": "No separate local rent control ordinance",
         "frequency": "Once per 12 months"
       },
@@ -110,31 +114,32 @@
         "local_ordinance": "Long Beach Just Cause Termination Ordinance (Mun. Code § 8.99)"
       },
       "key_rights": [
-        "State rent cap: 8% annually (5% + 3% CPI)",
+        "State rent cap: 5% + CPI annually (max 10%)",
         "Local just-cause eviction protections",
         "Relocation assistance for rent increases over 10% or no-fault evictions",
-        "Tenant harassment ordinance protections (Mun. Code § 8.101)",
-        "Applies to 5+ unit buildings built before February 1, 1985"
+        "Tenant harassment ordinance protections (Mun. Code § 8.101)"
       ],
       "relocation_assistance": {
         "triggers": ["Rent increase over 10%", "No-fault evictions", "Substantial remodel"],
-        "amount": "2x citywide average Fair Market Rent (max $4,500 based on bedroom)",
+        "amount": "See Long Beach Housing Authority for current amounts",
         "applies_to": "Buildings with 5+ units built before February 1, 1985"
       },
       "notice_requirements": {
         "rent_increase_under_10_pct": "30 days written",
-        "rent_increase_over_10_pct": "90 days written",
-        "tenancy_under_1_year": "30 days",
-        "tenancy_over_1_year": "60 days"
+        "rent_increase_over_10_pct": "90 days written"
       },
       "resources": [
         {"name": "Long Beach Housing Authority", "phone": "562-570-6985", "url": "https://www.longbeach.gov/haclb"},
         {"name": "We Are LBRE", "url": "https://www.wearelbre.org"},
-        {"name": "Legal Aid Foundation of LA", "phone": "562-435-3501", "url": "https://lafla.org"},
+        {"name": "Legal Aid Foundation of LA", "phone": "562-435-3501"},
         {"name": "Fair Housing Foundation", "phone": "562-989-1206"}
       ],
       "high_risk_zips": ["90813", "90805", "90804", "90806", "90810"],
-      "court_venue": "Long Beach Courthouse"
+      "court_venue": "Long Beach Courthouse",
+      "citations": {
+        "just_cause": ["Long Beach Mun. Code § 8.99"],
+        "harassment": ["Long Beach Mun. Code § 8.101"]
+      }
     },
     {
       "id": "glendale",
@@ -142,21 +147,18 @@
       "legal_regime": "AB 1482 (State) + Rental Rights Program (Local)",
       "rent_control": {
         "applies_to": "AB 1482 covered units only (no local rent control)",
-        "current_cap": "8% (August 1, 2025 - July 31, 2026)",
-        "formula": "5% + CPI (max 10%)",
-        "local_trigger": "Rent increases over 7% trigger relocation assistance",
-        "banking": "Can defer up to 7%/year for 3 years (21% max), but >15% triggers relocation"
+        "current_cap": "5% + regional CPI (max 10%) - see state calculator",
+        "local_trigger": "Rent increases over 7% trigger relocation assistance"
       },
       "just_cause": {
         "applies_to": "Buildings with 3+ units",
         "local_ordinance": "Just Cause and Retaliatory Eviction Ordinance (Mun. Code § 9.30)"
       },
       "key_rights": [
-        "State rent cap: 8% annually",
+        "State rent cap: 5% + CPI annually (max 10%)",
         "Local: Rent increase over 7% triggers relocation assistance",
         "Right to Lease: Must be offered 1-year written lease (5+ unit buildings)",
         "Just-cause eviction required for 3+ unit buildings",
-        "Intentional disrepair protections",
         "Anti-retaliation protections"
       ],
       "relocation_assistance": {
@@ -170,11 +172,14 @@
       },
       "resources": [
         {"name": "Glendale Rental Rights Program", "phone": "818-548-3978", "url": "https://www.glendalerentalrights.com"},
-        {"name": "Housing Rights Center", "phone": "800-477-5977"},
-        {"name": "LAFLA Glendale Office", "url": "https://lafla.org"}
+        {"name": "Housing Rights Center", "phone": "800-477-5977"}
       ],
       "high_risk_zips": ["91204", "91205", "91206", "91201"],
-      "court_venue": "Glendale Courthouse"
+      "court_venue": "Glendale Courthouse",
+      "citations": {
+        "relocation_trigger": ["https://www.glendalerentalrights.com/guides-1"],
+        "just_cause": ["Glendale Mun. Code § 9.30"]
+      }
     },
     {
       "id": "pasadena",
@@ -188,7 +193,7 @@
         "frequency": "Once per 12 months",
         "banking": false,
         "registration_required": true,
-        "registration_fee": "$238/unit annually"
+        "registration_fee": "See city fee schedule"
       },
       "just_cause": {
         "applies_to": "Almost all residential units",
@@ -200,13 +205,12 @@
         "Relocation assistance for no-fault evictions",
         "Right to return after temporary displacement for repairs",
         "One-for-one roommate replacement allowed",
-        "Cannot deny roommate based on credit score",
         "No banking of unused rent increases"
       ],
       "relocation_assistance": {
         "required_for": "No-fault evictions",
-        "triggers": ["Owner move-in", "Substantial repairs", "Demolition", "Ellis Act", "Condo conversion"],
-        "amount": "Based on Fair Market Rent (Pasadena-specific calculation)"
+        "triggers": ["Owner move-in", "Substantial repairs", "Demolition", "Ellis Act"],
+        "amount": "Based on Pasadena Fair Market Rent calculation - see city"
       },
       "notice_requirements": {
         "rent_increase": "30 days written",
@@ -214,11 +218,13 @@
       },
       "resources": [
         {"name": "Pasadena Rent Stabilization Dept", "email": "RentStabilization@CityofPasadena.net", "url": "https://www.cityofpasadena.net/rent-stabilization"},
-        {"name": "Housing Counselor Contact", "url": "https://www.cityofpasadena.net/rent-stabilization/rent-control-overview/"},
         {"name": "Pasadena Tenants Union", "url": "https://pasadenatenantsunion.org"}
       ],
       "high_risk_zips": ["91101", "91103", "91104", "91106"],
-      "court_venue": "Pasadena Courthouse"
+      "court_venue": "Pasadena Courthouse",
+      "citations": {
+        "rent_cap": ["https://www.cityofpasadena.net/rent-stabilization/rent-control-overview/"]
+      }
     },
     {
       "id": "statewide_ab1482",
@@ -227,54 +233,59 @@
       "rent_control": {
         "applies_to": "Units 15+ years old, not covered by stricter local law",
         "exemptions": ["SFH/condos with proper notice (unless corporate-owned)", "Owner-occupied duplexes", "Buildings <15 years old", "Deed-restricted affordable housing"],
-        "current_cap": "8% (August 1, 2025 - July 31, 2026)",
-        "formula": "5% + regional CPI (max 10%)",
+        "current_cap": "5% + regional CPI (max 10%) - varies by region/year",
         "frequency": "Max 2 increases per 12-month period",
-        "expires": "January 1, 2030"
+        "expires": "January 1, 2030",
+        "verify_at": "https://tenantprotections.org/calculator"
       },
       "just_cause": {
         "applies_to": "After 12 months of continuous tenancy",
-        "at_fault_reasons": ["Non-payment", "Breach of lease", "Nuisance", "Criminal activity", "Refusal to sign similar lease"],
-        "no_fault_reasons": ["Owner move-in", "Withdrawal from rental market", "Demolition/substantial remodel", "Government order"]
+        "at_fault_reasons": ["Non-payment", "Breach of lease", "Nuisance", "Criminal activity"],
+        "no_fault_reasons": ["Owner move-in", "Withdrawal from rental market", "Demolition/substantial remodel"]
       },
       "key_rights": [
-        "Rent cap: 5% + CPI annually (max 10%)",
+        "Rent cap: 5% + regional CPI annually (max 10%)",
         "Just-cause eviction after 12 months tenancy",
         "Relocation assistance: 1 month rent for no-fault evictions",
-        "Written notice of exemption required if property exempt",
-        "AB 2801: Photo documentation required for security deposits (effective April 2025)"
+        "Written notice of exemption required if property exempt"
       ],
       "notice_requirements": {
         "rent_increase_under_10_pct": "30 days written",
-        "rent_increase_over_10_pct": "90 days written",
-        "no_fault_eviction": "90 days to move in (owner move-in)"
+        "rent_increase_over_10_pct": "90 days written"
       },
       "resources": [
         {"name": "CA Attorney General Housing", "url": "https://oag.ca.gov/housing"},
-        {"name": "CA Dept of Consumer Affairs", "url": "https://www.dca.ca.gov"},
-        {"name": "Tenant Protection Calculator", "url": "https://tenantprotections.org/calculator"}
-      ]
+        {"name": "Tenant Protection Calculator", "url": "https://tenantprotections.org/calculator"},
+        {"name": "CA Dept of Consumer Affairs", "url": "https://www.dca.ca.gov"}
+      ],
+      "citations": {
+        "law": ["California Civil Code § 1946.2", "California Civil Code § 1947.12"]
+      }
     }
   ],
   "metadata": {
+    "version": "2.0-safe",
     "last_updated": "2026-02-01",
-    "data_verified_from": [
-      "LAHD housing.lacity.gov",
-      "LA County DCBA dcba.lacounty.gov",
-      "City of Pasadena Rent Stabilization",
-      "Glendale Rental Rights Program",
-      "CA Attorney General oag.ca.gov",
-      "AAGLA members.aagla.org"
-    ],
-    "coverage": "Major LA County jurisdictions + statewide fallback",
-    "disclaimer": "⚠️ NOT LEGAL ADVICE. Laws change frequently. Verify current rules with official sources or consult an attorney. This data is educational only.",
-    "update_schedule": "Rent caps update annually (varies by jurisdiction)",
-    "key_dates_2026": {
-      "la_city_rso_formula_change": "February 2, 2026",
-      "la_city_rso_cap": "July 1, 2025 - June 30, 2027: 3%",
-      "la_county_cap": "July 1, 2025 - June 30, 2026: 1.93%",
-      "pasadena_cap": "October 1, 2025 - September 30, 2026: 2.25%",
-      "ab1482_cap": "August 1, 2025 - July 31, 2026: 8%"
-    }
+    "verification_note": "Dollar amounts and specific percentages should be verified with official sources before use",
+    "official_sources": {
+      "la_city": "https://housing.lacity.gov",
+      "la_county": "https://dcba.lacounty.gov/rentstabilizationprogram",
+      "pasadena": "https://www.cityofpasadena.net/rent-stabilization",
+      "glendale": "https://www.glendalerentalrights.com",
+      "statewide": "https://oag.ca.gov/housing"
+    },
+    "disclaimer": "⚠️ NOT LEGAL ADVICE. Laws change frequently. Always verify current rules with official sources or consult an attorney. This data is for educational purposes only.",
+    "verified_claims": {
+      "la_city_3pct_cap": "Confirmed via https://housing.lacity.gov/renter-protections-2",
+      "la_city_utility_adder_feb2026": "Confirmed via https://housing.lacity.gov/rso-rent-increase-calculator",
+      "la_city_3day_filing": "Confirmed via https://housing.lacity.gov/residents/just-cause-for-eviction-ordinance-jco",
+      "pasadena_2.25pct_cap": "Confirmed via https://www.cityofpasadena.net/rent-stabilization/rent-control-overview/",
+      "glendale_7pct_trigger": "Confirmed via https://www.glendalerentalrights.com/guides-1"
+    },
+    "unverified_or_variable": [
+      "Specific dollar amounts for relocation (change annually July 1)",
+      "LA County RSTPO exact percentage (verify with DCBA bulletin)",
+      "AB 1482 exact percentage (varies by region/year)"
+    ]
   }
 }
