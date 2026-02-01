@@ -8,7 +8,7 @@
         "applies_to": "Multi-family buildings built on or before October 1, 1978",
         "current_cap": "3% (July 1, 2025 - June 30, 2027)",
         "utility_adder": "Eliminated effective February 2, 2026",
-        "formula_update": "City amended formula to 90% of CPI with 1-4% range effective Feb 2, 2026; LAHD states allowable increase remains 3% for Jul 1, 2025-Jun 30, 2027 (verify annually)",
+        "formula_update": "Rent formula changes approved around Feb 2, 2026; verify CPI-based formula details via official LAHD/City ordinance materials. LAHD states allowable increase remains 3% for Jul 1, 2025-Jun 30, 2027.",
         "frequency": "Once per 12 months",
         "banking": false
       },
@@ -96,7 +96,8 @@
       "high_risk_zips": ["91330", "90245", "90047", "90604", "91744"],
       "court_venue": "Norwalk Courthouse",
       "citations": {
-        "rent_stabilization": ["https://dcba.lacounty.gov/rentstabilizationprogram/"]
+        "rent_stabilization": ["https://dcba.lacounty.gov/rentstabilizationprogram/"],
+        "fmr_threshold_rule": ["https://dcba.lacounty.gov/rentstabilizationprogram/"]
       }
     },
     {
@@ -266,7 +267,7 @@
   "metadata": {
     "version": "2.0-safe",
     "last_updated": "2026-02-01",
-    "verification_note": "Dollar amounts and specific percentages should be verified with official sources before use",
+    "verification_note": "This dataset includes both verified items (linked) and variable items that must be checked in official bulletins at time of use",
     "official_sources": {
       "la_city": "https://housing.lacity.gov",
       "la_county": "https://dcba.lacounty.gov/rentstabilizationprogram",
