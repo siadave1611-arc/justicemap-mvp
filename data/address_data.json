@@ -44,7 +44,7 @@
         {"name": "Stay Housed LA", "phone": "888-694-0040", "url": "https://www.stayhousedla.org"},
         {"name": "Relocation Bulletin", "url": "https://housing.lacity.gov/rental-property-owners/relocation-assistance-information"}
       ],
-      "high_risk_zips": ["90011", "90012", "90037", "90044", "90003", "90007", "90028"],
+      "priority_zips": ["90011", "90012", "90037", "90044", "90003", "90007", "90028"],
       "court_venue": "Stanley Mosk Courthouse",
       "check_coverage": "Use ZIMAS at zimas.lacity.org or call LAHD hotline",
       "citations": {
@@ -138,8 +138,8 @@
       "high_risk_zips": ["90813", "90805", "90804", "90806", "90810"],
       "court_venue": "Long Beach Courthouse",
       "citations": {
-        "just_cause": ["Long Beach Mun. Code § 8.99"],
-        "harassment": ["Long Beach Mun. Code § 8.101"]
+        "just_cause": ["https://library.municode.com/ca/long_beach/codes/municipal_code?nodeId=TIT8HESA_CH8.99JUCA"],
+        "harassment": ["https://library.municode.com/ca/long_beach/codes/municipal_code?nodeId=TIT8HESA_CH8.101TEHA"]
       }
     },
     {
@@ -267,6 +267,7 @@
   "metadata": {
     "version": "2.0-safe",
     "last_updated": "2026-02-01",
+    "methodology_note": "Jurisdictions summarized from official program pages. Some values (rent caps, relocation amounts) change on schedules set by each jurisdiction and must be re-checked at time of use.",
     "verification_note": "This dataset includes both verified items (linked) and variable items that must be checked in official bulletins at time of use",
     "official_sources": {
       "la_city": "https://housing.lacity.gov",
