@@ -1,54 +1,28 @@
-# LA Eviction Rights Map
+## Data Integrity: Verified vs Variable Fields
 
-**Find tenant rights by address across LA County jurisdictions**
+This project distinguishes between **verified claims** (confirmed via official sources) and **variable items** (that change on jurisdiction schedules and must be re-checked at runtime).
 
-[![Demo](demo.gif)](https://eviction-rights-map.vercel.app)
+### ✅ Verified Claims
 
-## Features
+| Claim | Source |
+|-------|--------|
+| LA City RSO 3% rent cap | [housing.lacity.gov/renter-protections-2](https://housing.lacity.gov/renter-protections-2) |
+| LA City utility adder eliminated Feb 2, 2026 | [housing.lacity.gov/rso-rent-increase-calculator](https://housing.lacity.gov/rso-rent-increase-calculator) |
+| LA City JCO 3-day filing requirement | [housing.lacity.gov/.../just-cause-for-eviction-ordinance-jco](https://housing.lacity.gov/residents/just-cause-for-eviction-ordinance-jco) |
+| Pasadena 2.25% rent cap (Oct 2025–Sep 2026) | [cityofpasadena.net/rent-stabilization/rent-control-overview](https://www.cityofpasadena.net/rent-stabilization/rent-control-overview/) |
+| Glendale 7% rent increase triggers relocation | [glendalerentalrights.com/guides-1](https://www.glendalerentalrights.com/guides-1) |
 
-- **Address lookup** → Exact jurisdiction matching (not ZIP codes)
-- **Interactive map** with city/unincorporated boundaries  
-- **Legal rights** by jurisdiction (JCO, RSTPO, AB1482)
-- **High-risk ZIP overlay** with pressure scores
-- **Legal resources** + court venues
+### ⚠️ Variable / Must Re-Check
 
-## How It Works
+These values change on jurisdiction-specific schedules (typically annually on July 1 or Oct 1):
 
-123 Main St, 90012 
-↓ Nominatim geocoding 
-(34.05° N, 118.24° W) 
-↓ Point-in-polygon 
-LA City (JCO + RSO) 
-↓ Rights lookup 
-“Just-cause only, 60-day notice, $9,200 relocation”
+- **Relocation assistance dollar amounts** — updated annually by LAHD/DCBA
+- **LA County RSTPO exact percentage** — verify via [DCBA rent increase bulletin](https://dcba.lacounty.gov/rentstabilizationprogram/)
+- **AB 1482 statewide cap** — varies by region/year; use [calculator](https://tenantprotections.org/calculator)
+- **Registration fees** — check each city's fee schedule
 
+### Methodology
 
-## Coverage
+Jurisdictions are summarized from official program pages. This dataset is designed for educational lookup tools, not legal advice. Users should always verify current values via linked official sources before relying on any specific claim.
 
-| Jurisdiction | Population | Key Protections | High Risk ZIPs |
-|--------------|------------|-----------------|---------------|
-| LA City | 3.8M | JCO + RSO | 90011, 90037 |
-| Unincorporated | 1.0M | RSTPO | 91330, 90245 |
-| Long Beach | 466K | Local RC | 90813, 90805 |
-| Glendale | 196K | AB1482 | 91204 |
-
-**82% LA County population covered**
-
-## Data Sources
-
-- [LAHD Eviction Tracker](https://housing.lacity.gov/residents/renters/eviction-notices-filed)
-- [LA County DCBA](https://dcba.lacounty.gov/portfolio/eviction/)
-- [StayHousedLA Priority ZIPs](https://www.stayhousedla.org/priority-zip-codes)
-- [LA County GIS Boundaries](https://services3.arcgis.com/2S90r5q5n1TvMt2U/arcgis/rest/services/LA_County_Boundaries/FeatureServer/0)
-
-## Local Development
-
-```bash
-pip install -r requirements.txt
-python src/backend/test_geocode.py "123 Main St, 90012"
-
-## Architecture
-
-Frontend (React/Leaflet) → FastAPI → Geocode Engine → address_data.json + la_boundaries.geojson
-
-⚠️ Disclaimer: Not legal advice. Consult attorney for case-specific guidance.
+> 📄 See [`docs/SOURCES.md`](docs/SOURCES.md) for complete source documentation.
