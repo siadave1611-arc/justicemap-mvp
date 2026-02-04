@@ -28,3 +28,6 @@ Jurisdiction rules are summarized from official city, county, and state program 
 This dataset is designed for educational and informational lookup tools. Users should always verify current values through linked official sources before relying on any specific claim.
 
 > 📄 See [`docs/SOURCES.md`](docs/SOURCES.md) for complete source documentation.
+
+> ⚠️ **Data Notice:** Eviction statistics are synthetic/demo data for MVP. 
+> Real data pipeline planned for v2.0 (Census ACS + court records).
