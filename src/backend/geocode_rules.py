@@ -12,8 +12,7 @@ from functools import lru_cache
 # === CONFIG ===
 DATA_DIR = Path(__file__).parent.parent.parent / "data"
 BOUNDARIES_FILE = DATA_DIR / "la_boundaries.geojson"
-RIGHTS_FILE = DATA_DIR / "jurisdiction_rights.json"  # You'll create this
-ZIP_DATA_FILE = DATA_DIR / "zip_data.json"  # Your existing file
+RIGHTS_FILE = DATA_DIR / "address_data.json"
 
 NOMINATIM_URL = "https://nominatim.openstreetmap.org/search"
 USER_AGENT = "JusticeMapMVP/1.0 (LA-tenant-rights-project)"
@@ -21,48 +20,81 @@ REQUEST_DELAY = 1.0  # Nominatim requires 1 req/sec max
 
 _last_req = 0
 
+# === JURISDICTION MAPPING ===
+# Maps GeoJSON CITY_COMM_NAME -> address_data.json keys
+JURISDICTION_MAP = {
+    "LOS ANGELES": "los_angeles_city",
+    "LONG BEACH": "long_beach",
+    "GLENDALE": "glendale",
+    "PASADENA": "pasadena",
+    "SANTA MONICA": "santa_monica",
+    "WEST HOLLYWOOD": "west_hollywood",
+    "BEVERLY HILLS": "beverly_hills",
+    "CULVER CITY": "culver_city",
+    "INGLEWOOD": "inglewood",
+}
+
+def map_jurisdiction(city_comm_name: str, jurisdiction_type: str) -> str:
+    """Map GeoJSON names to address_data.json keys."""
+    name_upper = city_comm_name.upper().strip()
+    
+    # Check explicit mapping first
+    if name_upper in JURISDICTION_MAP:
+        return JURISDICTION_MAP[name_upper]
+    
+    # Unincorporated areas -> LA County rules
+    if jurisdiction_type == "UNINCORPORATED AREA":
+        return "la_county"
+    
+    # Other incorporated cities -> CA statewide rules
+    return "california_statewide"
+
 
 # === DATA LOADERS (cached) ===
 @lru_cache(maxsize=1)
 def load_boundaries():
     """Load GeoJSON jurisdiction boundaries."""
     if not BOUNDARIES_FILE.exists():
+        print(f"[Warning] Boundaries file not found: {BOUNDARIES_FILE}")
         return []
+    
     with open(BOUNDARIES_FILE) as f:
         data = json.load(f)
     
     jurisdictions = []
     for feat in data.get("features", []):
         props = feat.get("properties", {})
-        # Handle common GeoJSON property names
-        jid = (props.get("jurisdiction_id") or 
-               props.get("CITY", "").lower().replace(" ", "_") or
-               props.get("NAME", "").lower().replace(" ", "_"))
-        name = props.get("name") or props.get("CITY") or props.get("NAME") or "Unknown"
+        
+        # Use actual field names from LA County GeoJSON
+        city_comm_name = props.get("CITY_COMM_NAME", "Unknown")
+        jurisdiction_type = props.get("JURISDICTION", "")
+        
+        # Map to our jurisdiction keys
+        jid = map_jurisdiction(city_comm_name, jurisdiction_type)
         
         try:
             geom = shape(feat["geometry"])
-            jurisdictions.append({"id": jid, "name": name, "geometry": geom})
-        except Exception:
+            jurisdictions.append({
+                "id": jid,
+                "name": city_comm_name.title(),  # "LOS ANGELES" -> "Los Angeles"
+                "type": jurisdiction_type,
+                "geometry": geom
+            })
+        except Exception as e:
+            print(f"[Warning] Could not parse geometry for {city_comm_name}: {e}")
             continue
+    
+    print(f"[Info] Loaded {len(jurisdictions)} jurisdiction boundaries")
     return jurisdictions
 
 
 @lru_cache(maxsize=1)
 def load_rights():
-    """Load jurisdiction rights data."""
+    """Load jurisdiction rights data from address_data.json."""
     if RIGHTS_FILE.exists():
         with open(RIGHTS_FILE) as f:
             return json.load(f)
-    return {}
-
-
-@lru_cache(maxsize=1)
-def load_zip_data():
-    """Load existing zip_data.json for fallback."""
-    if ZIP_DATA_FILE.exists():
-        with open(ZIP_DATA_FILE) as f:
-            return json.load(f)
+    print(f"[Warning] Rights file not found: {RIGHTS_FILE}")
     return {}
 
 
@@ -108,7 +140,11 @@ def find_jurisdiction(lat: float, lon: float) -> dict | None:
     
     for j in load_boundaries():
         if j["geometry"].contains(pt):
-            return {"id": j["id"], "name": j["name"]}
+            return {
+                "id": j["id"],
+                "name": j["name"],
+                "type": j["type"]
+            }
     return None
 
 
@@ -116,76 +152,31 @@ def get_jurisdiction_rights(jid: str) -> dict:
     """Get rights info for a jurisdiction ID."""
     rights = load_rights()
     
-    # Default rights data structure
-    defaults = {
-        "la_city": {
-            "name": "City of Los Angeles",
-            "rent_control": True,
-            "just_cause": True,
-            "key_rights": [
-                "Rent Stabilization Ordinance (RSO) covers buildings built before 10/1/1978",
-                "Just-cause eviction required for RSO units",
-                "Annual rent increases capped (typically 3-8%)",
-                "Relocation assistance required for no-fault evictions"
-            ],
-            "notice_requirements": "60-day notice for tenancies >1 year, 30-day for <1 year",
-            "resources": [
-                {"name": "LA Housing Department", "url": "https://housing.lacity.org", "phone": "866-557-7368"},
-                {"name": "Stay Housed LA", "url": "https://stayhousedla.org"}
-            ]
-        },
-        "santa_monica": {
-            "name": "City of Santa Monica",
-            "rent_control": True,
-            "just_cause": True,
-            "key_rights": [
-                "Strong rent control - covers most rentals",
-                "Just-cause eviction required",
-                "Strict limits on rent increases"
-            ],
-            "notice_requirements": "60-day notice required",
-            "resources": [
-                {"name": "Santa Monica Rent Control", "url": "https://www.smgov.net/rentcontrol", "phone": "310-458-8751"}
-            ]
-        },
-        "unincorporated": {
-            "name": "Unincorporated LA County",
-            "rent_control": True,
-            "just_cause": True,
-            "key_rights": [
-                "LA County Rent Stabilization Ordinance (2020)",
-                "Covers unincorporated areas",
-                "Just-cause eviction protections",
-                "3% annual rent cap + CPI"
-            ],
-            "notice_requirements": "60-day notice for tenancies >1 year",
-            "resources": [
-                {"name": "LA County DCBA", "url": "https://dcba.lacounty.gov/rentstabilization", "phone": "833-223-7368"}
-            ]
-        }
-    }
-    
-    # Merge loaded rights with defaults
+    # Direct match
     if jid in rights:
         return rights[jid]
-    if jid in defaults:
-        return defaults[jid]
     
-    # Unknown jurisdiction - return CA state minimums
+    # Fallback to statewide
+    if "california_statewide" in rights:
+        result = rights["california_statewide"].copy()
+        result["note"] = f"Specific rules for this jurisdiction not yet verified. Showing California statewide protections."
+        return result
+    
+    # Ultimate fallback
     return {
-        "name": "Unknown Jurisdiction",
+        "name": "California (Statewide)",
         "rent_control": False,
         "just_cause": True,
-        "key_rights": [
-            "California Tenant Protection Act (AB 1482) may apply",
+        "protections": [
+            "California Tenant Protection Act (AB 1482) applies",
             "Just-cause eviction for tenancies >12 months",
             "Rent cap: 5% + local CPI (max 10%) annually"
         ],
         "notice_requirements": "60-day notice for tenancies >1 year, 30-day for <1 year",
         "resources": [
-            {"name": "CA Dept of Consumer Affairs", "url": "https://www.courts.ca.gov/selfhelp-housing.htm"}
+            {"name": "CA Courts Self-Help", "url": "https://www.courts.ca.gov/selfhelp-housing.htm"}
         ],
-        "warning": "Could not determine exact jurisdiction - showing CA state minimums"
+        "note": "Could not determine specific local rules. Showing CA state minimums."
     }
 
 
@@ -220,9 +211,13 @@ def lookup_address(address: str) -> dict:
         result["jurisdiction"] = jurisdiction
         jid = jurisdiction["id"]
     else:
-        # Fallback: try to infer from address
-        result["jurisdiction"] = {"id": "unknown", "name": "Unknown (CA state rules apply)"}
-        jid = "unknown"
+        # Outside LA County or boundary gap
+        result["jurisdiction"] = {
+            "id": "california_statewide",
+            "name": "Outside LA County boundaries",
+            "type": "STATEWIDE"
+        }
+        jid = "california_statewide"
     
     # Step 3: Get rights
     result["rights"] = get_jurisdiction_rights(jid)
@@ -234,8 +229,36 @@ def lookup_address(address: str) -> dict:
 # === CLI USAGE ===
 if __name__ == "__main__":
     import sys
-    addr = " ".join(sys.argv[1:]) if len(sys.argv) > 1 else "123 Main St, Los Angeles, CA 90012"
     
-    print(f"\n🔍 Looking up: {addr}\n")
-    res = lookup_address(addr)
-    print(json.dumps(res, indent=2))
+    test_addresses = [
+        "1200 W 7th St, Los Angeles, CA 90017",      # LA City (Downtown)
+        "411 W Ocean Blvd, Long Beach, CA 90802",    # Long Beach
+        "613 E Broadway, Glendale, CA 91206",        # Glendale
+        "100 N Garfield Ave, Pasadena, CA 91101",    # Pasadena
+        "3250 Wilshire Blvd, Los Angeles, CA 90010", # LA City (Koreatown)
+        "1000 Vin Scully Ave, Los Angeles, CA 90012",# LA City (Dodger Stadium)
+        "4801 Whittier Blvd, East Los Angeles, CA",  # Unincorporated (East LA)
+    ]
+    
+    if len(sys.argv) > 1:
+        # Custom address from command line
+        addr = " ".join(sys.argv[1:])
+        print(f"\n🔍 Looking up: {addr}\n")
+        res = lookup_address(addr)
+        print(json.dumps(res, indent=2))
+    else:
+        # Run test suite
+        print("=" * 60)
+        print("JusticeMap MVP - Jurisdiction Lookup Test")
+        print("=" * 60)
+        
+        for addr in test_addresses:
+            print(f"\n📍 {addr}")
+            res = lookup_address(addr)
+            if res["success"]:
+                j = res["jurisdiction"]
+                print(f"   ✅ {j['name']} ({j['id']})")
+                print(f"   📜 {res['rights'].get('name', 'Unknown')}")
+            else:
+                print(f"   ❌ {res['error']}")
+            print("-" * 40)
